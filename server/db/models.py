@@ -42,6 +42,7 @@ categories = Table(
     Column("created_at",    TIMESTAMP,      default=datetime.now),
 )
 
+# Links
 links = Table(
     "links", metadata,
     Column("id",            Integer,        primary_key=True),
@@ -64,7 +65,19 @@ notes = Table(
     Column("updated_at",    TIMESTAMP,      default=datetime.now, onupdate=datetime.now),
 )
 
-# files
+notes_meta = Table(
+    "notes_meta", metadata,
+    Column("note_id",       Integer,        unique=True),
+    Column("color",         String(6)),
+    Column("important",     Boolean,        default=False),
+    # TODO:
+    # Think about it
+    # Column("reminder",      Integer,        ForeignKey("reminders.id"))
+    # RFC5545 recurring event format ( https://datatracker.ietf.org/doc/html/rfc5545 )
+    # Column("recurring",      String)
+)
+
+# Files
 # file store in FileStorageService and return link, id, size, etc.
 files = Table(
     "files", metadata,
