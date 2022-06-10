@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import TIMESTAMP, MetaData, Table, Column, String, Integer, Boolean, ForeignKey
+from sqlalchemy import create_engine, TIMESTAMP, MetaData, Table, Column, String, Integer, Boolean, ForeignKey
 
 metadata = MetaData()
 
@@ -11,7 +11,7 @@ users = Table(
     Column("first_name",    String,         nullable=True),
     Column("last_name",     String,         nullable=True),
     Column("visible_name",  String),
-    Column("icon",          String,         nullable=True),
+    Column("icon",          Integer,        ForeignKey("files.id"), nullable=True),
     Column("birthday",      TIMESTAMP,      nullable=True),
     Column("active",        Boolean,        default=False),
     Column("created_at",    TIMESTAMP,      default=datetime.now),
@@ -65,18 +65,6 @@ notes = Table(
     Column("updated_at",    TIMESTAMP,      default=datetime.now, onupdate=datetime.now),
 )
 
-notes_meta = Table(
-    "notes_meta", metadata,
-    Column("note_id",       Integer,        unique=True),
-    Column("color",         String(6)),
-    Column("important",     Boolean,        default=False),
-    # TODO:
-    # Think about it
-    # Column("reminder",      Integer,        ForeignKey("reminders.id"))
-    # RFC5545 recurring event format ( https://datatracker.ietf.org/doc/html/rfc5545 )
-    # Column("recurring",      String)
-)
-
 # Files
 # file store in FileStorageService and return link, id, size, etc.
 files = Table(
@@ -84,9 +72,27 @@ files = Table(
     Column("id",            Integer,        primary_key=True),
     Column("url",           String),
     Column("size",          Integer),       # Constraint: max file size 
-    Column("format",        String(64)),    # TODO: Enum pdf, text, images, xls, docs, etc.
+    Column("format",        String(64)),
+    Column("file_name",     String),
+    Column("folder",        Integer,        ForeignKey("folders.id"), nullable=True),
     Column("owner",         Integer,        ForeignKey("users.id"), nullable=False),
     Column("created_at",    TIMESTAMP,      default=datetime.now),
+)
+
+folders = Table(
+    "folders", metadata,
+    Column("id",            Integer,        primary_key=True),
+    Column("owner",         Integer,        ForeignKey("users.id"), nullable=False),
+    Column("title",         String(64)),
+    Column("workspace_id",  Integer,        ForeignKey("workspaces.id")),
+    Column("created_at",    TIMESTAMP,      default=datetime.now),
+    Column("updated_at",    TIMESTAMP,      default=datetime.now, onupdate=datetime.now)
+)
+
+folder_parents = Table(
+    "folder_parents", metadata,
+    Column("folder_id",     Integer,        ForeignKey("folders.id"), nullable=False),
+    Column("folder_parent_id", Integer,     ForeignKey("folders.id"), nullable=False),
 )
 
 # Bookshelf
@@ -95,6 +101,7 @@ books = Table(
     Column("id",            Integer,        primary_key=True),
     Column("file",          Integer,        ForeignKey("files.id"), nullable=False),
     Column("owner",         Integer,        ForeignKey("users.id"), nullable=False),
+    Column("folder",        Integer,        ForeignKey("folders.id"), nullable=True),
     Column("title",         String(124),    nullable=False),
     Column("created_at",    TIMESTAMP,      default=datetime.now),
 )
@@ -104,7 +111,7 @@ books = Table(
 contacts = Table(
     "contacts", metadata,
     Column("id",            Integer,        primary_key=True),
-    Column("email",         String),
+    Column("email",         String,         nullable=False),
     Column("first_name",    String),
     Column("last_name",     String),
     Column("company",       String),
@@ -118,40 +125,40 @@ contacts = Table(
 # NOTE: owner_id needs to filter tags by user
 note_tags = Table(
     "note_tags", metadata,
-    Column("user_id",       Integer,        ForeignKey("users.id"), nullable=False),
     Column("note_id",       Integer,        ForeignKey("notes.id"), nullable=False),
     Column("tag_id",        Integer,        ForeignKey("tags.id"), nullable=False)
-    # tag_id should be owned by user_id
 )
 
 link_tags = Table(
     "link_tags", metadata,
-    Column("user_id",       Integer,        ForeignKey("users.id"), nullable=False),
     Column("link_id",       Integer,        ForeignKey("links.id"), nullable=False),
     Column("tag_id",        Integer,        ForeignKey("tags.id"), nullable=False)
-    # tag_id should be owned by user_id
 )
 
 file_tags = Table(
     "file_tags", metadata,
-    Column("user_id",       Integer,        ForeignKey("users.id"), nullable=False),
     Column("file_id",       Integer,        ForeignKey("files.id"), nullable=False),
     Column("tag_id",        Integer,        ForeignKey("tags.id"), nullable=False)
-    # tag_id should be owned by user_id
 )
 
 book_notes = Table(
     "book_notes", metadata,
-    Column("user_id",       Integer,        ForeignKey("users.id"), nullable=False),
     Column("book_id",       Integer,        ForeignKey("books.id"), nullable=False),
     Column("note_id",       Integer,        ForeignKey("notes.id"), nullable=False)
-    # note should be owned by user_id
 )
 
 contact_tags = Table(
     "contact_tags", metadata,
-    Column("user_id",       Integer,        ForeignKey("users.id"), nullable=False),
     Column("contact_id",    Integer,        ForeignKey("contacts.id"), nullable=False),
     Column("tag_id",        Integer,        ForeignKey("tags.id"), nullable=False)
-    # note should be owned by user_id
+)
+
+# General meta table. Many entities has color, important flag, etc.
+# Why not to store it in different table?
+entity_meta = Table(
+    "entity_meta", metadata,
+    Column("entity_id",     Integer,        unique=True),
+    Column("color",         String(6),      nullable=True),
+    Column("important",     Boolean,        default=False),
+    Column("bookmark",      Boolean,        default=False)
 )
