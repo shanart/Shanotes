@@ -18,3 +18,17 @@ class Command(BaseCommand):
         )
         user.set_password("111")
         user.save()
+
+        user2, _ = User.objects.get_or_create(
+            username="notadmin",
+            first_name="First",
+            last_name="Last",
+            email="not-admin@admin.com",
+            phone="0111111112",
+            is_active=True,
+            is_staff=False,
+            is_superuser=False
+        )
+        user2.set_password("111")
+        user2.save()
+

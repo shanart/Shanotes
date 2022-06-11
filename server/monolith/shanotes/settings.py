@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
 
-    'apps.users'
+    'apps.shared',
+    'apps.users',
+    'apps.notes',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +76,7 @@ WSGI_APPLICATION = 'shanotes.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-if os.getenv('TESTING'):
+if os.getenv('TESTING') or os.getenv('LOCAL'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -141,5 +143,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
-    'DATETIME_FORMAT': "%d %b %Y %H:%M:%S"
+    'DATETIME_FORMAT': "%d %b %Y %H:%M:%S",
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
 }
