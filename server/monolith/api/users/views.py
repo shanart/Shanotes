@@ -1,5 +1,4 @@
 from rest_framework import generics, permissions, views, response
-from permissions.permissions import IsOwner
 from .serializers import UserSerializer
 from apps.users.models import User
 
