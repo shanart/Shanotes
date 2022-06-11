@@ -1,7 +1,16 @@
 from datetime import datetime
-from sqlalchemy import TIMESTAMP, MetaData, Table, Column, String, Integer, Boolean, ForeignKey
+from sqlalchemy import create_engine, TIMESTAMP, MetaData, Table, Column, String, Integer, Boolean, ForeignKey
 
 metadata = MetaData()
+
+
+def metadata_dump(sql, *multiparams, **params):
+    # print or write to log or file etc
+    print(sql.compile(dialect=engine.dialect))
+
+
+engine = create_engine('sqlite:///college.db', echo=True, strategy='mock', executor=metadata_dump)
+
 
 users = Table(
     'users', metadata,
@@ -162,3 +171,8 @@ entity_meta = Table(
     Column("important",     Boolean,        default=False),
     Column("bookmark",      Boolean,        default=False)
 )
+
+
+
+
+metadata.create_all(engine)
