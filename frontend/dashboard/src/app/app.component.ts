@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation, ElementRef} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: '#root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = 'dashboard';
+    title = 'dashboard';
+
+    constructor(private _elementRef: ElementRef) {
+    }
+
+    ngOnInit() {
+        this._elementRef.nativeElement.removeAttribute("ng-version");
+    }
 }
