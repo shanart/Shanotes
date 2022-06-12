@@ -1,5 +1,6 @@
-Django
 Celery
+Django
+django-cors-headers
 djangorestframework
 djangorestframework-simplejwt
 django-filter
