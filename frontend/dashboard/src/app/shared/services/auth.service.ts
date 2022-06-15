@@ -10,8 +10,6 @@ import {TokenService} from "./token.service";
     providedIn: 'root'
 })
 export class AuthService {
-    private apiRoot: string = 'http://localhost:8000';
-
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -23,7 +21,7 @@ export class AuthService {
     }
 
     login(form: Login) {
-        const url = `${this.apiRoot}/api/v1/auth/`;
+        const url = `/api/v1/auth/`;
         return this.http.post<AuthTokens>(url, form, this.httpOptions).pipe(
             tap((response) => {
                 this.tokenService.saveToLocalStorage(response)
