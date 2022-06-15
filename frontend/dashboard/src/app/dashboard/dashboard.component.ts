@@ -1,14 +1,14 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {TokenService} from "../../shared/services/token.service";
-import {NotesService} from "../../shared/services/notes.service";
+import {TokenService} from "../common/services/token.service";
+import {NotesService} from "./notes.service";
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
+    selector: '#dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
     constructor(private tokenService: TokenService,
                 private notesService: NotesService) {
@@ -21,9 +21,4 @@ export class HomeComponent implements OnInit {
             }
         })
     }
-
-    logout(): void {
-        this.tokenService.removeAuthToken();
-    }
-
 }

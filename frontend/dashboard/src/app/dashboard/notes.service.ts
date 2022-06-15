@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {tap} from "rxjs/operators";
-import {AuthTokens} from "../models/common";
+import {AuthTokens} from "../common/models/common";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
