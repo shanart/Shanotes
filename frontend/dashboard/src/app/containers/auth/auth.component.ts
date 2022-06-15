@@ -2,11 +2,9 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from "@angular/router";
 import {Validators} from '@angular/forms';
 import {FormBuilder} from '@angular/forms';
-import {AuthService} from "../../shared/services/auth.service";
-import {Login} from "../../shared/models/common";
+import {AuthService} from "../../common/services/auth.service";
+import {Login} from "../../common/models/common";
 import {of} from "rxjs";
-import {catchError, map, tap} from "rxjs/operators";
-
 
 @Component({
     selector: '#login',
@@ -42,7 +40,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         if (this.loginForm.valid) {
             this.auth.login(this.loginForm.value as Login).subscribe({
                 next: resp => {
-                    this.router.navigate(['/home']);
+                    this.router.navigate(['/dashboard']);
                 },
                 error: err => this.errors = err.error
             })

@@ -1,0 +1,20 @@
+// Import Custom SB Admin 2 Variables (Overrides Default Bootstrap Variables)
+@import "styles/variables";
+
+// Import Bootstrap
+@import "~bootstrap/scss/bootstrap.scss";
+
+// Import Custom SB Admin 2 Mixins and Components
+@import "styles/mixins";
+@import "styles/global";
+@import "styles/utilities";
+
+// Custom Components
+@import "styles/dropdowns";
+@import "styles/navs";
+@import "styles/buttons";
+@import "styles/cards";
+@import "styles/charts";
+@import "styles/login";
+@import "styles/error";
+@import "styles/footer";

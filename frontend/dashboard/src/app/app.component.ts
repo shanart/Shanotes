@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation, ElementRef} from '@angular/core';
-import {AuthService} from "./shared/services/auth.service";
+import {AuthService} from "./common/services/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent {
     ngOnInit() {
         this._elementRef.nativeElement.removeAttribute("ng-version");
         if (this.auth.isAuthenticated()) {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/dashboard']);
         }
     }
 }

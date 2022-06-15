@@ -1,25 +1,27 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthComponent} from "./containers/auth/auth.component";
-import {HomeComponent} from "./containers/home/home.component";
-import {TokenInterceptor} from "./shared/interceptors/token.interceptor";
+import {TokenInterceptor} from "./common/interceptors/token.interceptor";
+import {DashboardModule} from "./dashboard/dashboard.module";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     declarations: [
         AppComponent,
         AuthComponent,
-        HomeComponent
     ],
     imports: [
+        DashboardModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FontAwesomeModule
     ],
     providers: [
         {
