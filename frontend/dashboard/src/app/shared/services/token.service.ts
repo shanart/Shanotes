@@ -26,4 +26,8 @@ export class TokenService {
             refresh: localStorage.getItem('refresh'),
         } as AuthTokens
     }
+
+    tokensExists(): boolean {
+        return !!(localStorage.getItem('access') && localStorage.getItem('refresh'));
+    }
 }
