@@ -11,9 +11,10 @@ import {TokenService} from "./token.service";
 })
 export class AuthService {
     private apiRoot: string = 'http://localhost:8000';
+
     httpOptions = {
         headers: new HttpHeaders({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         })
     };
 
@@ -28,6 +29,10 @@ export class AuthService {
                 this.tokenService.saveToLocalStorage(response)
             }),
         );
+    }
+
+    isAuthenticated(): boolean {
+        return this.tokenService.tokensExists()
     }
 
     private handleError<T>(operation = 'operation', result?: T) {
