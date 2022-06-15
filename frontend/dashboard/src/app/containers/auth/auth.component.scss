@@ -1,5 +1,12 @@
-.login-wrapper {
-    height: calc(100vh - 64px);
-    min-height: 400px;
-    padding: 25px 0;
-}
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/utilities/api";

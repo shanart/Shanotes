@@ -33,26 +33,18 @@ export class AuthComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
     }
 
-    onSubmit() {
+    clearErrors(): void {
+        this.errors = null;
+    }
+
+    onSubmit(): void {
         if (this.loginForm.valid) {
-            this.auth.login(this.loginForm.value as Login).pipe(
-                tap(resp => {
-                        console.log(resp);
-                }),
-                catchError((err: any) => {
-                    return of(err)
-                })
-            ).subscribe(
-                resp => {
-                    this.errors = resp.error;
-                    console.log(resp.error)
-                }
-            )
-        } else {
-            console.log({
-                email: this.loginForm.controls.email.errors,
-                password: this.loginForm.controls.password.errors,
-            });
+            this.auth.login(this.loginForm.value as Login).subscribe({
+                next: resp => {
+                    this.router.navigate(['/home']);
+                },
+                error: err => this.errors = err.error
+            })
         }
     }
 
