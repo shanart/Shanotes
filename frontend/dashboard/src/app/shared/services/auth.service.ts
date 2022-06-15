@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Login} from "../models/common";
+import {AuthTokens, Login} from "../models/common";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, map, tap} from "rxjs/operators";
 import {Observable, of} from 'rxjs';
+import {TokenService} from "./token.service";
 
 
 @Injectable({
@@ -16,16 +17,17 @@ export class AuthService {
         })
     };
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+                private tokenService: TokenService) {
     }
 
     login(form: Login) {
         const url = `${this.apiRoot}/api/v1/auth/`;
-        return this.http.post(url, form, this.httpOptions)
-        //     .pipe(
-        //     tap((response: any) => console.log(response)),
-        //     catchError(this.handleError<Login>('Login'))
-        // );
+        return this.http.post<AuthTokens>(url, form, this.httpOptions).pipe(
+            tap((response) => {
+                this.tokenService.saveToLocalStorage(response)
+            }),
+        );
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

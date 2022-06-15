@@ -4,20 +4,25 @@
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
                 <div class="mb-3">
                     <input formControlName="email"
+                           (keyup)="clearErrors()"
                            placeholder="Email"
                            class="form-control form-control-sm" type="email" id="email" name="email">
                 </div>
 
                 <div class="mb-3">
                     <input formControlName="password"
+                           (keyup)="clearErrors()"
                            placeholder="Password"
                            class="form-control form-control-sm" id="password" type="password">
+                </div>
+
+                <div class="alert alert-danger px-3 py-2" *ngIf="errors">
+                    <small>{{errors.detail}}</small>
                 </div>
 
                 <div class="d-flex">
                     <button [disabled]="!loginForm.valid" type="submit" class="btn btn-info btn-sm">Login</button>
                 </div>
-
             </form>
         </div>
     </div>
