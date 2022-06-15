@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TokenService} from "../../shared/services/token.service";
+import {NotesService} from "../../shared/services/notes.service";
 
 @Component({
     selector: 'app-home',
@@ -9,10 +10,16 @@ import {TokenService} from "../../shared/services/token.service";
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private tokenService: TokenService) {
+    constructor(private tokenService: TokenService,
+                private notesService: NotesService) {
     }
 
     ngOnInit() {
+        this.notesService.getNotesList().pipe().subscribe({
+            next: data => {
+                console.log(data)
+            }
+        })
     }
 
     logout(): void {
