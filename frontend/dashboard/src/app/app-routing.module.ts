@@ -8,8 +8,8 @@ const routes: Routes = [
     {path: 'login', component: AuthComponent},
     {
         path: 'home',
-        // canActivate: [AuthGuard],
-        // canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
+        // canLoad: https://www.tektutorialshub.com/angular/angular-canload-guard-example/
         loadChildren: () => import('./modules/home/home-routing.module').then(m => m.HomeRoutingModule)
     },
     {path: '**', redirectTo: '/login'},
