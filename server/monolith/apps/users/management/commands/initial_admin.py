@@ -1,0 +1,34 @@
+from django.core.management.base import BaseCommand
+from apps.users.models import User
+
+
+class Command(BaseCommand):
+    help = "Generate random users. Usage: python manage.py initial_admin"
+
+    def handle(self, *args, **kwargs):
+        user, _ = User.objects.get_or_create(
+            username="admin",
+            first_name="First",
+            last_name="Last",
+            email="admin@admin.com",
+            phone="0111111111",
+            is_active=True,
+            is_staff=True,
+            is_superuser=True
+        )
+        user.set_password("111")
+        user.save()
+
+        user2, _ = User.objects.get_or_create(
+            username="notadmin",
+            first_name="First",
+            last_name="Last",
+            email="not-admin@admin.com",
+            phone="0111111112",
+            is_active=True,
+            is_staff=False,
+            is_superuser=False
+        )
+        user2.set_password("111")
+        user2.save()
+
