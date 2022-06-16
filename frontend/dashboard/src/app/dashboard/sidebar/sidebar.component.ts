@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {faCalendarCheck} from '@fortawesome/free-solid-svg-icons';
+import {faCalendarCheck, faList, faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -10,6 +10,8 @@ import {faCalendarCheck} from '@fortawesome/free-solid-svg-icons';
 })
 export class SidebarComponent implements OnInit {
     faCoffee = faCalendarCheck;
+    notes = faList;
+    toggleSidebar = faAngleLeft;
 
     constructor() {
     }

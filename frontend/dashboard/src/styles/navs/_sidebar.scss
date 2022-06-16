@@ -98,12 +98,12 @@
         margin-bottom: 1rem;
         cursor: pointer;
 
-        &::after {
-            font-weight: 900;
-            content: '\f104';
-            font-family: 'Font Awesome 5 Free';
-            margin-right: 0.1rem;
-        }
+        //&::after {
+        //    font-weight: 900;
+        //    content: '\f104';
+        //    font-family: 'Font Awesome 5 Free';
+        //    margin-right: 0.1rem;
+        //}
 
         &:hover {
             text-decoration: none;
@@ -236,20 +236,20 @@
 
                 // Accordion Arrow Icon
                 &[data-toggle="collapse"] {
-                    &::after {
-                        width: 1rem;
-                        text-align: center;
-                        float: right;
-                        vertical-align: 0;
-                        border: 0;
-                        font-weight: 900;
-                        content: '\f107';
-                        font-family: 'Font Awesome 5 Free';
-                    }
-
-                    &.collapsed::after {
-                        content: '\f105';
-                    }
+                    //&::after {
+                    //    width: 1rem;
+                    //    text-align: center;
+                    //    float: right;
+                    //    vertical-align: 0;
+                    //    border: 0;
+                    //    font-weight: 900;
+                    //    content: '\f107';
+                    //    font-family: 'Font Awesome 5 Free';
+                    //}
+                    //
+                    //&.collapsed::after {
+                    //    content: '\f105';
+                    //}
                 }
             }
         }
@@ -319,9 +319,9 @@
                         margin-right: 0;
                     }
 
-                    &[data-toggle="collapse"]::after {
-                        display: none;
-                    }
+                    //&[data-toggle="collapse"]::after {
+                    //    display: none;
+                    //}
                 }
             }
 
@@ -377,9 +377,9 @@
             }
 
             // Accordion
-            &[data-toggle="collapse"]::after {
-                color: $gray-500;
-            }
+            //&[data-toggle="collapse"]::after {
+            //    color: $gray-500;
+            //}
         }
 
         &.active {
@@ -397,9 +397,9 @@
     #sidebarToggle {
         background-color: $gray-200;
 
-        &::after {
-            color: $gray-500;
-        }
+        //&::after {
+        //    color: $gray-500;
+        //}
 
         &:hover {
             background-color: $gray-300;
@@ -440,9 +440,9 @@
             }
 
             // Accordion
-            &[data-toggle="collapse"]::after {
-                color: fade-out($white, 0.5);
-            }
+            //&[data-toggle="collapse"]::after {
+            //    color: fade-out($white, 0.5);
+            //}
         }
 
         &.active {
@@ -460,9 +460,9 @@
     #sidebarToggle {
         background-color: fade-out($white, 0.8);
 
-        &::after {
-            color: fade-out($white, 0.5);
-        }
+        //&::after {
+        //    color: fade-out($white, 0.5);
+        //}
 
         &:hover {
             background-color: fade-out($white, 0.75);
@@ -470,8 +470,19 @@
     }
 
     &.toggled {
-        #sidebarToggle::after {
-            color: fade-out($white, 0.5);
-        }
+        //#sidebarToggle::after {
+        //    color: fade-out($white, 0.5);
+        //}
+    }
+}
+
+.toggle-button {
+    opacity: 0.5;
+    width: 26px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+
+    &:hover {
+        opacity: 1;
     }
 }
