@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AuthTokens, Login} from "../models/common";
+import {AccessTokenResponse, AuthTokens, Login, TokenRefresh} from "../models/common";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, map, tap} from "rxjs/operators";
 import {Observable, of} from 'rxjs';
@@ -28,6 +28,17 @@ export class AuthService {
             }),
         );
     }
+
+    refresh(form: TokenRefresh) {
+        const url = `/api/v1/auth/refresh/`;
+        return this.http.post<AccessTokenResponse>(url, form, this.httpOptions).pipe(
+            tap((response) => {
+                this.tokenService.updateAccessToken(response)
+            }),
+        );
+    }
+
+    // TODO: verify token?
 
     isAuthenticated(): boolean {
         return this.tokenService.tokensExists()
