@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TokenService} from "../../common/services/token.service";
 import {NotesService} from "../notes.service";
-import {faSearch, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import {faSearch, faSignOutAlt, faEnvelope, faBell} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     selector: '#topbar',
@@ -13,6 +13,9 @@ import {faSearch, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 export class TopbarComponent implements OnInit {
     faSearch = faSearch;
     faSignOutAlt = faSignOutAlt;
+    faEnvelope = faEnvelope;
+    faBell = faBell;
+
     constructor(private tokenService: TokenService,
                 private notesService: NotesService) {
     }

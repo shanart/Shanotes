@@ -1,9 +1,9 @@
 <div class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard">
         <div class="sidebar-brand-icon rotate-n-15">
-            <fa-icon [icon]="faCoffee" size="2x"></fa-icon>
+            <fa-icon [icon]="faCalendar" size="2x"></fa-icon>
         </div>
         <div class="sidebar-brand-text mx-3">Shanotes</div>
     </a>
@@ -12,30 +12,55 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <div class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-           aria-expanded="true" aria-controls="collapseTwo">
-            <span class="d-inline-block me-3">
+    <div class="nav-item active">
+        <a class="nav-link">
+            <span class="d-inline-block mr-3">
                 <fa-icon [icon]="notes"></fa-icon>
             </span>
             <span>Notes</span>
         </a>
     </div>
+
+    <div class="nav-item">
+        <a class="nav-link">
+            <span class="d-inline-block mr-3">
+                <fa-icon [icon]="faLink"></fa-icon>
+            </span>
+            <span>Links</span>
+        </a>
+    </div>
+
+    <div class="nav-item">
+        <a class="nav-link">
+            <span class="d-inline-block mr-3">
+                <fa-icon [icon]="faFile"></fa-icon>
+            </span>
+            <span>Files</span>
+        </a>
+    </div>
+
+    <div class="nav-item">
+        <a class="nav-link">
+            <span class="d-inline-block mr-3">
+                <fa-icon [icon]="faBell"></fa-icon>
+            </span>
+            <span>Reminders</span>
+        </a>
+    </div>
+
+
+    <div class="nav-item">
+        <a class="nav-link">
+            <span class="d-inline-block mr-3">
+                <fa-icon [icon]="faAddressBook"></fa-icon>
+            </span>
+            <span>Contacts</span>
+        </a>
+    </div>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
