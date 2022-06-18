@@ -5,6 +5,7 @@ import {FormBuilder} from '@angular/forms';
 import {AuthService} from "../../common/services/auth.service";
 import {Login} from "../../common/models/common";
 import {of} from "rxjs";
+import {TokenService} from "../../common/services/token.service";
 
 @Component({
     selector: '#login',
@@ -22,6 +23,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     constructor(private router: Router,
                 private auth: AuthService,
+                private tokenService: TokenService,
                 private formBuilder: FormBuilder) {
 
     }
@@ -40,6 +42,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         if (this.loginForm.valid) {
             this.auth.login(this.loginForm.value as Login).subscribe({
                 next: resp => {
+                    this.tokenService.saveToLocalStorage(resp);
                     this.router.navigate(['/dashboard']);
                 },
                 error: err => this.errors = err.error

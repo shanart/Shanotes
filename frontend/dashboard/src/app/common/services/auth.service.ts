@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AccessTokenResponse, AuthTokens, Login, TokenRefresh} from "../models/common";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, map, tap} from "rxjs/operators";
 import {Observable, of} from 'rxjs';
 import {TokenService} from "./token.service";
 
@@ -10,6 +9,7 @@ import {TokenService} from "./token.service";
     providedIn: 'root'
 })
 export class AuthService {
+    auth_root: string = `/api/v1/auth/`;
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -20,22 +20,14 @@ export class AuthService {
                 private tokenService: TokenService) {
     }
 
-    login(form: Login) {
-        const url = `/api/v1/auth/`;
-        return this.http.post<AuthTokens>(url, form, this.httpOptions).pipe(
-            tap((response) => {
-                this.tokenService.saveToLocalStorage(response)
-            }),
-        );
+    // TODO: define refresh login response interface
+    login(form: Login): Observable<any> {
+        return this.http.post<AuthTokens>(this.auth_root, form, this.httpOptions);
     }
 
-    refresh(form: TokenRefresh) {
-        const url = `/api/v1/auth/refresh/`;
-        return this.http.post<AccessTokenResponse>(url, form, this.httpOptions).pipe(
-            tap((response) => {
-                this.tokenService.updateAccessToken(response)
-            }),
-        );
+    // TODO: define refresh token response interface
+    refreshToken(form: TokenRefresh): Observable<any> {
+        return this.http.post<AccessTokenResponse>(`${this.auth_root}refresh/`, form, this.httpOptions);
     }
 
     // TODO: verify token?
