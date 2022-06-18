@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AccessTokenResponse, AuthTokens} from "../models/common";
 import {Router} from "@angular/router";
-import * as jwt_decode from 'jwt-decode';
-import jwtDecode from "jwt-decode";
 
 
 interface Token {
@@ -26,7 +24,7 @@ export class TokenService {
         localStorage.setItem('refresh', data.refresh);
     }
 
-    updateAccessToken(data: AccessTokenResponse) {
+    saveToken(data: AccessTokenResponse) {
         localStorage.setItem('access', data.access);
     }
 
@@ -45,5 +43,9 @@ export class TokenService {
 
     tokensExists(): boolean {
         return !!(localStorage.getItem('access') && localStorage.getItem('refresh'));
+    }
+
+    signOut(): void {
+        localStorage.clear();
     }
 }

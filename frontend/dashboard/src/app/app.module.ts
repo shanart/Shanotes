@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthComponent} from "./containers/auth/auth.component";
-import {TokenInterceptor} from "./common/interceptors/token.interceptor";
+import {authInterceptorProviders} from "./common/interceptors/token.interceptor";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -23,13 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         ReactiveFormsModule,
         FontAwesomeModule
     ],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptor,
-            multi: true
-        }
-    ],
+    providers: [authInterceptorProviders],
     bootstrap: [AppComponent]
 })
 export class AppModule {
