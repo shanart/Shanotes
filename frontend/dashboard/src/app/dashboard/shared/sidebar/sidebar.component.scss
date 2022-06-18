@@ -1,4 +1,18 @@
-.sidebar {
+#sidebar {
     min-height: 100vh;
-    width: 14rem !important;
+    width: 14rem;
+
+    a {
+        color: white
+    }
+}
+
+.sidebar-brand {
+    height: 70px;
+}
+
+.toggle-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
 }
