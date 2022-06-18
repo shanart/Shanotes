@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {NotesService} from "../notes.service";
+import {Note} from "../../common/models/common";
+import {faSlidersH} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: '#notes',
-  templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.scss']
+    selector: '#notes.h-100',
+    templateUrl: './notes.component.html',
+    styleUrls: ['./notes.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class NotesComponent implements OnInit {
+    notes: Note[] = [];
+    loading: boolean = true;
+    faSlidersH = faSlidersH;
 
-  constructor() { }
+    constructor(private notesService: NotesService) {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+        this.notesService.getNotesList().pipe().subscribe({
+            next: data => {
+                this.notes = data.results;
+                this.loading = false;
+            }
+        });
+    }
 
 }

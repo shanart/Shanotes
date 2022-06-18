@@ -1,7 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {BrowserModule} from "@angular/platform-browser";
+
 import {NotesComponent} from './notes.component';
 import {NotesRoutingModule} from "./notes-routing.module";
+import {RouterModule} from "@angular/router";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -10,7 +14,10 @@ import {NotesRoutingModule} from "./notes-routing.module";
     ],
     imports: [
         CommonModule,
-        NotesRoutingModule
+        BrowserModule,
+        RouterModule,
+        NotesRoutingModule,
+        FontAwesomeModule
     ]
 })
 export class NotesModule {

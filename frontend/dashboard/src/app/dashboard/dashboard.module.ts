@@ -8,8 +8,8 @@ import {SidebarComponent} from './shared/sidebar/sidebar.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {TopbarComponent} from './shared/topbar/topbar.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import { DashboardOverviewComponent } from './dashboard-overview/dashboard-overview.component';
-// import { NotesModule } from './notes/notes.module';
+import {DashboardOverviewComponent} from './dashboard-overview/dashboard-overview.component';
+import {NotesModule} from './notes/notes.module';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { DashboardOverviewComponent } from './dashboard-overview/dashboard-overv
         BrowserModule,
         DashboardRoutingModule,
         FontAwesomeModule,
-        // NotesModule
+        NotesModule
     ],
     providers: [
         NotesService

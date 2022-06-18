@@ -1,21 +1,37 @@
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Notes</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <!--<i class="fas fa-download fa-sm text-white-50"></i> -->
-        Filter
-    </a>
+<!--&lt;!&ndash; Page Heading &ndash;&gt;-->
+<!--<div class="d-sm-flex align-items-center justify-content-between mb-4">-->
+<!--<h1 class="h3 mb-0 text-gray-800">Notes</h1>-->
+<!--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">-->
+<!--&lt;!&ndash;<i class="fas fa-download fa-sm text-white-50"></i> &ndash;&gt;-->
+<!--Filter-->
+<!--</a>-->
+<!--</div>-->
+
+<div class="spinner-border text-primary" role="status" *ngIf="loading">
+    <span class="sr-only">Loading...</span>
 </div>
 
-<div>
-    <div>
+<div class="d-flex h-100"  *ngIf="!loading">
+    <div class="w-25 border-right">
+        <div>
+            <button class="btn btn-sm d-flex justify-content-between w-100">
+                Filter
+                <fa-icon [icon]="faSlidersH"></fa-icon>
+            </button>
+        </div>
         <!--SIDEBAR with notes tree-->
+        <div class="list-group rounded-0">
+            <a *ngFor="let note of notes"
+               routerLink="{{note.id}}"
+                href="#"
+               class="d-flex justify-content-between list-group-item list-group-item-action border-right-0 border-left-0 p-2">  <!--  active class -->
+                <small>{{note.title}}</small>
+                <small style="opacity: 0.5; float: right">{{note.created_at}}</small>
+            </a>
+        </div>
     </div>
 
-    <div>
-        <div>
-            <!--filter or note top bar-->
-        </div>
+    <div class="w-75">
         <div>
             <!--notes detail or cards view-->
         </div>

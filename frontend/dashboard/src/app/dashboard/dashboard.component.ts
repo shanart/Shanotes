@@ -15,10 +15,6 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.notesService.getNotesList().pipe().subscribe({
-            next: data => {
-                console.log(data)
-            }
-        })
+
     }
 }
