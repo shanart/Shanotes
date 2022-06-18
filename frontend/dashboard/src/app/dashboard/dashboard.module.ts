@@ -4,17 +4,20 @@ import {CommonModule} from '@angular/common';
 import {DashboardRoutingModule} from './dashboard-routing.module';
 import {NotesService} from "./notes.service";
 import {DashboardComponent} from "./dashboard.component";
-import {SidebarComponent} from './sidebar/sidebar.component';
+import {SidebarComponent} from './shared/sidebar/sidebar.component';
 import {BrowserModule} from "@angular/platform-browser";
-import {TopbarComponent} from './topbar/topbar.component';
+import {TopbarComponent} from './shared/topbar/topbar.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { DashboardOverviewComponent } from './dashboard-overview/dashboard-overview.component';
+// import { NotesModule } from './notes/notes.module';
 
 
 @NgModule({
     declarations: [
         DashboardComponent,
         SidebarComponent,
-        TopbarComponent
+        TopbarComponent,
+        DashboardOverviewComponent
     ],
     exports: [
         SidebarComponent
@@ -23,7 +26,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
         CommonModule,
         BrowserModule,
         DashboardRoutingModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        // NotesModule
     ],
     providers: [
         NotesService
