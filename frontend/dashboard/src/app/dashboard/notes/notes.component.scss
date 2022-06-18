@@ -1,3 +1,8 @@
 #notes {
-    height: 100%;
+    height: calc(100% - 70px);
+}
+
+.notes-list {
+    overflow-y: auto;
+    height: calc(100vh - 101px);
 }

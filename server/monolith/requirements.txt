@@ -7,3 +7,4 @@ django-filter
 python-dotenv
 psycopg2-binary==2.8.6
 Pillow
+python-lorem

@@ -9,7 +9,8 @@ import {BrowserModule} from "@angular/platform-browser";
 import {TopbarComponent} from './shared/topbar/topbar.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {DashboardOverviewComponent} from './dashboard-overview/dashboard-overview.component';
-import {NotesModule} from './notes/notes.module';
+import {NotesComponent} from "./notes/notes.component";
+import { NoteDetailComponent } from './notes/note-detail/note-detail.component';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import {NotesModule} from './notes/notes.module';
         DashboardComponent,
         SidebarComponent,
         TopbarComponent,
-        DashboardOverviewComponent
+        DashboardOverviewComponent,
+        NotesComponent,
+        NoteDetailComponent
     ],
     exports: [
         SidebarComponent
@@ -26,8 +29,7 @@ import {NotesModule} from './notes/notes.module';
         CommonModule,
         BrowserModule,
         DashboardRoutingModule,
-        FontAwesomeModule,
-        NotesModule
+        FontAwesomeModule
     ],
     providers: [
         NotesService
