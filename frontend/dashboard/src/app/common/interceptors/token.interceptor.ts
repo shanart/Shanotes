@@ -10,7 +10,11 @@ import {TokenService} from "../services/token.service";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-
+    /*
+    TODO: create refresh token handler on 401 error. If get new token - continue, if not - kick off the user from
+    dashboard
+    https://github.com/bezkoder/angular-12-jwt-refresh-token/blob/master/src/app/_helpers/auth.interceptor.ts#L44
+     */
     constructor(private tokenService: TokenService) {
     }
 
