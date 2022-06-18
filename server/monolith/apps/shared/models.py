@@ -26,13 +26,20 @@ class Tags(models.Model):
     class Meta:
         verbose_name_plural = _("Tags")
 
+    def __str__(self):
+        return self.title
+
 
 class Categories(models.Model):
     title = models.CharField(max_length=64)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     meta = models.ForeignKey(EntityMeta, on_delete=models.SET_NULL, null=True, blank=True)
+    parent = models.ForeignKey("self", on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name_plural = _("Categories")
+
+    def __str__(self):
+        return self.title
