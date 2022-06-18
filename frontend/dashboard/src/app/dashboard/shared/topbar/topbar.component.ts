@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {TokenService} from "../../common/services/token.service";
-import {NotesService} from "../notes.service";
+import {TokenService} from "../../../common/services/token.service";
+import {NotesService} from "../../notes.service";
 import {faSearch, faSignOutAlt, faEnvelope, faBell} from "@fortawesome/free-solid-svg-icons";
 
 @Component({

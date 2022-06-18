@@ -11,6 +11,7 @@ class NoteSerializer(ModelSerializer):
     class Meta:
         model = Note
         fields = (
+            "id",
             "title",
             "content",
             "tags",

@@ -12,7 +12,7 @@ const routes: Routes = [
         // canLoad: https://www.tektutorialshub.com/angular/angular-canload-guard-example/
         loadChildren: () => import('./dashboard/dashboard-routing.module').then(m => m.DashboardRoutingModule)
     },
-    {path: '**', redirectTo: '/login'},
+    // {path: '**', redirectTo: '/login'},
 ];
 
 @NgModule({
