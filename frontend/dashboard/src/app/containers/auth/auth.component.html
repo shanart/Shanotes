@@ -1,30 +1,31 @@
 <div class="container">
     <div class="row w-100">
-        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3">
-            <h4 class="mb-3">Login</h4>
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 text-center">
+            <div class="text-center">
+                <img src="assets/images/logo.jpg" alt="" class="mb-3" style="width: 60px">
+                <h4 class="mb-3">Login</h4>
+            </div>
             <div class="auth-form">
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
                     <div class="mb-3">
                         <input formControlName="email"
                                (keyup)="clearErrors()"
                                placeholder="Email"
-                               class="form-control form-control-sm" type="email" id="email" name="email">
+                               class="form-control form-control-sm text-center" type="email" id="email" name="email">
                     </div>
 
                     <div class="mb-3">
                         <input formControlName="password"
                                (keyup)="clearErrors()"
                                placeholder="Password"
-                               class="form-control form-control-sm" id="password" type="password">
+                               class="form-control form-control-sm text-center" id="password" type="password">
                     </div>
 
                     <div class="alert alert-danger px-3 py-2" *ngIf="errors">
-                        <small>{{errors.detail}}</small>
+                        <small>{{ errors.detail }}</small>
                     </div>
 
-                    <div class="d-flex">
-                        <button [disabled]="!loginForm.valid" type="submit" class="btn btn-info btn-sm">Login</button>
-                    </div>
+                    <button [disabled]="!loginForm.valid" type="submit" class="btn btn-success btn-sm">Login</button>
                 </form>
             </div>
         </div>

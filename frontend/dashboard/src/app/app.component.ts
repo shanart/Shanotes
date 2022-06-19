@@ -5,7 +5,6 @@ import {Router} from "@angular/router";
 @Component({
     selector: '#root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {

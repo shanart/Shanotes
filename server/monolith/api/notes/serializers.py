@@ -20,3 +20,16 @@ class NoteSerializer(ModelSerializer):
             "created_at",
             "updated_at",
         )
+
+
+class NoteShortSerializer(ModelSerializer):
+    category = CategoriesSerializer()
+
+    class Meta:
+        model = Note
+        fields = (
+            "id",
+            "title",
+            "category",
+            "created_at",
+        )

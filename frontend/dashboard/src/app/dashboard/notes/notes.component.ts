@@ -18,7 +18,7 @@ export class NotesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.notesService.getNotesList().pipe().subscribe({
+        this.notesService.getShortNotesList().pipe().subscribe({
             next: data => {
                 this.notes = data.results;
                 this.loading = false;
