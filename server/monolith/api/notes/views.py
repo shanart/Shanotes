@@ -6,11 +6,14 @@ from permissions.permissions import IsOwner
 
 class NoteView(generics.RetrieveAPIView):
     serializer_class = NoteSerializer
-    queryset = Note.objects.all()
     permission_classes = (permissions.IsAuthenticated, IsOwner)
+
+    def get_queryset(self):
+        return Note.objects.filter(owner=self.request.user)
 
 
 class NotesView(generics.ListCreateAPIView):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializer
     permission_classes = (permissions.IsAuthenticated, IsOwner)
+
+    def get_queryset(self):
+        return Note.objects.filter(owner=self.request.user)

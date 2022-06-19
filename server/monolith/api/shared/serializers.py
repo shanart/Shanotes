@@ -6,6 +6,7 @@ class EntityMetaSerializer(ModelSerializer):
     class Meta:
         model = EntityMeta
         fields = (
+            "id",
             "color",
             "important",
             "bookmark",
@@ -18,6 +19,7 @@ class TagsSerializer(ModelSerializer):
     class Meta:
         model = Tags
         fields = (
+            "id",
             "title",
             "meta",
         )
@@ -29,6 +31,7 @@ class CategoriesSerializer(ModelSerializer):
     class Meta:
         model = Categories
         fields = (
+            "id",
             "title",
             "meta",
         )

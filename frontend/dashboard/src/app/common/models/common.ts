@@ -23,13 +23,15 @@ export interface Meta {
 }
 
 export interface Tag {
+    id: number
     title: string
     meta: Meta
 }
 
 export interface Category {
+    id: number
     title: string
-    parent: Category|null
+    parent: Category | null
     meta: Meta
 }
 

@@ -11,6 +11,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {DashboardOverviewComponent} from './dashboard-overview/dashboard-overview.component';
 import {NotesComponent} from "./notes/notes.component";
 import { NoteDetailComponent } from './notes/note-detail/note-detail.component';
+import {HexColorPipe} from "../common/pipes/hexColor.pipe";
 
 
 @NgModule({
@@ -20,7 +21,10 @@ import { NoteDetailComponent } from './notes/note-detail/note-detail.component';
         TopbarComponent,
         DashboardOverviewComponent,
         NotesComponent,
-        NoteDetailComponent
+        NoteDetailComponent,
+
+        // helpers
+        HexColorPipe
     ],
     exports: [
         SidebarComponent
