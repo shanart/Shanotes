@@ -1,13 +1,12 @@
-from rest_framework import permissions, views
-from .serializers import NoteSerializer, NoteShortSerializer
+from rest_framework import permissions, views, response
 from apps.notes.models import Note
 from permissions.permissions import IsOwner
 from rest_framework.pagination import LimitOffsetPagination
+from .serializers import NoteSerializer, NoteShortSerializer, NoteCreateSerializer
 
 
 class NotesView(views.APIView, LimitOffsetPagination):
     permission_classes = (permissions.IsAuthenticated, IsOwner)
-    serializer_class = NoteSerializer
 
     def get_queryset(self):
         return Note.objects.filter(owner=self.request.user)
@@ -20,3 +19,11 @@ class NotesView(views.APIView, LimitOffsetPagination):
             if request.GET["list"] == "short":
                 serializer = NoteShortSerializer(results, many=True)
         return self.get_paginated_response(serializer.data)
+
+    def post(self, request):
+        serializer = NoteCreateSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            instance = serializer.save(owner=request.user)
+            s = NoteSerializer(instance)
+            return response.Response(s.data, status=201)
+        return response.Response(serializer.errors, status=400)
