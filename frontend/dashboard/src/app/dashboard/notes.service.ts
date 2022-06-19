@@ -26,7 +26,7 @@ export class NotesService {
     }
 
     getShortNotesList(): Observable<NotesResponse> {
-        const url = `/api/v1/notes/list/short/`;
+        const url = `/api/v1/notes/list/?list=short`;
         return this.http.get<NotesResponse>(url, this.httpOptions).pipe(
             catchError(this.handleError)
         );

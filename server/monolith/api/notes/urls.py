@@ -1,11 +1,10 @@
+from rest_framework.urlpatterns import format_suffix_patterns
 from django.urls import path
-
-from api.notes.serializers import NoteShortSerializer, NoteSerializer
-from .views import NoteView, NotesView
+from .views import NotesView
 
 app_label = 'notes'
 urlpatterns = [
-    path('<int:pk>/', NoteView.as_view()),
-    path('list/', NotesView.as_view(serializer_class=NoteSerializer)),
-    path('list/short/', NotesView.as_view(serializer_class=NoteShortSerializer)),
+    path('', NotesView.as_view()),
+    # path('<int:pk>/', note_detail),
 ]
+
