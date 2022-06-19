@@ -33,12 +33,24 @@ services:
       - POSTGRES_PASSWORD=postgres_password
       - POSTGRES_MULTIPLE_DATABASES=shanotes
 
-#  rabbitmq:
-#    image: rabbitmq:3-management-alpine
-#    ports:
-#      - 5672:5672
-#      - 15672:15672
+  #  rabbitmq:
+  #    image: rabbitmq:3-management-alpine
+  #    ports:
+  #      - 5672:5672
+  #      - 15672:15672
 
   # =======================================
   # Metrics
   # Prometheus, Consul, etc...
+  prometheus:
+    image: prom/prometheus:v2.21.0
+    ports:
+      - 9000:9090
+    volumes:
+      - ./server/prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+
+
+volumes:
+  prometheus-data:
