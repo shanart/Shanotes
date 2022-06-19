@@ -10,8 +10,9 @@ import {TopbarComponent} from './shared/topbar/topbar.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {DashboardOverviewComponent} from './dashboard-overview/dashboard-overview.component';
 import {NotesComponent} from "./notes/notes.component";
-import { NoteDetailComponent } from './notes/note-detail/note-detail.component';
+import {NoteDetailComponent} from './notes/note-detail/note-detail.component';
 import {HexColorPipe} from "../common/pipes/hexColor.pipe";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import {HexColorPipe} from "../common/pipes/hexColor.pipe";
         CommonModule,
         BrowserModule,
         DashboardRoutingModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     providers: [
         NotesService

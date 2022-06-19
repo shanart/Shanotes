@@ -1,7 +1,7 @@
 #sidebar {
     min-height: 100vh;
     width: 14rem;
-    background-color: var(--blue);
+    background-color: var(--green);
 
     a {
         color: white
@@ -9,7 +9,8 @@
 }
 
 .sidebar-brand {
-    height: 70px;
+    height: 62px;
+    text-decoration: none;
 }
 
 .toggle-button {
