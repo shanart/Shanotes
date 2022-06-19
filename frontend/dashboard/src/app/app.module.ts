@@ -6,8 +6,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthComponent} from "./containers/auth/auth.component";
 import {authInterceptorProviders} from "./common/interceptors/token.interceptor";
-import {DashboardModule} from "./dashboard/dashboard.module";
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+
+// TODO: If comment this import - error on <router-outlet> in NotesComponent ...
+import {DashboardModule} from "./dashboard/dashboard.module";
 
 
 @NgModule({
@@ -16,7 +18,6 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
         AuthComponent
     ],
     imports: [
-        DashboardModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
