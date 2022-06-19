@@ -1,27 +1,45 @@
 <div class="p-3">
-    <div class="spinner-border text-primary" role="status" *ngIf="loading">
-        <span class="sr-only">Loading...</span>
-    </div>
 
-    <div *ngIf="note">
-        <h2>{{ note.title }}</h2>
 
-        <div>
-            <p>{{ note.content }}</p>
+    <form [formGroup]="noteForm" (onSubmit)="onSubmit()" enctype="multipart/form-data">
+        <div *ngIf="note">
+
+            <div class="mb-3 d-flex justify-content-between">
+                <small style="opacity: 0.5">
+                    <fa-icon [icon]="faCalendar"></fa-icon>
+                    {{ note.created_at }}
+                </small>
+                <button class="btn btn-sm btn-success" [disabled]="true">Save</button>
+            </div>
+
+            <div class="form-group w-100">
+                <input formControlName="title"
+                       type="text" name="title" id="title" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <textarea formControlName="content"
+                          rows="10"
+                          name="content" class="form-control"></textarea>
+            </div>
+
+            <!-- TODO: tags input select/creator -->
+            <ul *ngIf="note.tags" class="m-0 p-0">
+                <li *ngFor="let tag of note.tags" class="d-inline-block pr-1">
+                    <a *ngIf="!tag.meta" routerLink="/notes/search?tag={{ tag.id }}"
+                       class="badge badge-primary">
+                        {{ tag.title }}
+                    </a>
+                    <a *ngIf="tag.meta" routerLink="/notes/search?tag={{ tag.id }}"
+                       class="badge text-white" style="background-color: {{ tag.meta.color | hex_color }}">
+                        {{ tag.title }}
+                    </a>
+                </li>
+
+            </ul>
+
+
         </div>
+    </form>
 
-        <ul *ngIf="note.tags" class="m-0 p-0">
-            <li *ngFor="let tag of note.tags" class="d-inline-block pr-1">
-                <a *ngIf="!tag.meta" routerLink="/notes/search?tag={{ tag.id }}"
-                   class="badge badge-primary">
-                    {{ tag.title }}
-                </a>
-                <a *ngIf="tag.meta" routerLink="/notes/search?tag={{ tag.id }}"
-                   class="badge text-white" style="background-color: {{ tag.meta.color | hex_color }}">
-                    {{ tag.title }}
-                </a>
-            </li>
-
-        </ul>
-    </div>
 </div>
