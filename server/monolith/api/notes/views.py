@@ -1,5 +1,6 @@
 from rest_framework import permissions, views, response
 from apps.notes.models import Note
+from django.http import Http404
 from permissions.permissions import IsOwner
 from rest_framework.pagination import LimitOffsetPagination
 from .serializers import NoteSerializer, NoteShortSerializer, NoteCreateSerializer
@@ -27,3 +28,32 @@ class NotesView(views.APIView, LimitOffsetPagination):
             s = NoteSerializer(instance)
             return response.Response(s.data, status=201)
         return response.Response(serializer.errors, status=400)
+
+
+class NoteDetailView(views.APIView):
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
+
+    def get_object(self, pk):
+        try:
+            return Note.objects.get(pk=pk)
+        except Note.DoesNotExist:
+            raise Http404
+
+    def get(self, request, id):
+        note = self.get_object(id)
+        serializer = NoteSerializer(note)
+        return response.Response(serializer.data, status=200)
+
+    def patch(self, request, id):
+        note = self.get_object(id)
+        serializer = NoteCreateSerializer(note, data=request.data, context={'request': request})
+        if serializer.is_valid():
+            instance = serializer.save()
+            s = NoteSerializer(instance)
+            return response.Response(s.data, status=201)
+        return response.Response(serializer.errors, status=400)
+
+    def delete(self, request, id):
+        note = self.get_object(id)
+        note.delete()
+        return response.Response(None, status=204)
