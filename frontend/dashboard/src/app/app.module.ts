@@ -8,9 +8,6 @@ import {AuthComponent} from "./containers/auth/auth.component";
 import {authInterceptorProviders} from "./common/interceptors/token.interceptor";
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
-// TODO: If comment this import - error on <router-outlet> in NotesComponent ...
-import {DashboardModule} from "./dashboard/dashboard.module";
-
 
 @NgModule({
     declarations: [
