@@ -45,6 +45,7 @@ class NoteSerializer(serializers.ModelSerializer):
 
 class NoteShortSerializer(serializers.ModelSerializer):
     category = CategoriesSerializer()
+    created_at = serializers.DateTimeField(format="%d %b %y")
 
     class Meta:
         model = Note

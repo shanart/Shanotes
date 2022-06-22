@@ -5,6 +5,7 @@ import {DashboardComponent} from "./dashboard.component";
 
 
 const routes: Routes = [
+    {path: '', redirectTo: 'notes', pathMatch: 'full'},
     {
         path: '',
         canActivate: [AuthGuard],
@@ -15,7 +16,7 @@ const routes: Routes = [
                 loadChildren: () => import('./notes/notes.module').then(m => m.NotesModule)
             }
         ]
-    },
+    }
 ];
 
 @NgModule({
