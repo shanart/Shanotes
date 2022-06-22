@@ -10,7 +10,7 @@ const routes: Routes = [
         path: 'dashboard',
         canActivate: [AuthGuard],
         // canLoad: https://www.tektutorialshub.com/angular/angular-canload-guard-example/
-        loadChildren: () => import('./dashboard/dashboard-routing.module').then(m => m.DashboardRoutingModule)
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
     },
     // {path: '**', redirectTo: '/login'},
 ];

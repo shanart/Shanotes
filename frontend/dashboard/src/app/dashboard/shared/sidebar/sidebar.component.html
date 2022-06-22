@@ -1,71 +1,72 @@
-<div class="navbar-nav bg-gradient-primary text-white px-4 h-100">
+<div class="sidebar-container"
+    [ngClass]="sidebar_active? '': 'not-active'">
+    <div class="navbar-nav text-white h-100">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <fa-icon [icon]="faCalendar" size="2x"></fa-icon>
-        </div>
-        <div class="sidebar-brand-text mx-3">Shanotes</div>
-    </a>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center bg-white text-success"
+           routerLink="/dashboard">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <img src="assets/images/logo.png" alt="" class="img-fluid">
+            </div>
+            <div class="sidebar-brand-text mx-3">Shanotes</div>
+        </a>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <div class="nav-item active">
-        <a class="nav-link" routerLink="notes">
+        <div class="px-4 pt-3">
+            <div class="nav-item active">
+                <a class="nav-link" routerLink="notes">
             <span class="d-inline-block mr-3">
                 <fa-icon [icon]="notes"></fa-icon>
             </span>
-            <span>Notes</span>
-        </a>
-    </div>
+                    <span class="nav-link-label">Notes</span>
+                </a>
+            </div>
 
-    <div class="nav-item">
-        <a class="nav-link">
+            <div class="nav-item">
+                <a class="nav-link">
             <span class="d-inline-block mr-3">
                 <fa-icon [icon]="faLink"></fa-icon>
             </span>
-            <span>Links</span>
-        </a>
-    </div>
+                    <span class="nav-link-label">Links</span>
+                </a>
+            </div>
 
-    <div class="nav-item">
-        <a class="nav-link">
+            <div class="nav-item">
+                <a class="nav-link">
             <span class="d-inline-block mr-3">
                 <fa-icon [icon]="faFile"></fa-icon>
             </span>
-            <span>Files</span>
-        </a>
-    </div>
+                    <span class="nav-link-label">Files</span>
+                </a>
+            </div>
 
-    <div class="nav-item">
-        <a class="nav-link">
+            <div class="nav-item">
+                <a class="nav-link">
             <span class="d-inline-block mr-3">
                 <fa-icon [icon]="faBell"></fa-icon>
             </span>
-            <span>Reminders</span>
-        </a>
-    </div>
+                    <span class="nav-link-label">Reminders</span>
+                </a>
+            </div>
 
 
-    <div class="nav-item">
-        <a class="nav-link">
+            <div class="nav-item">
+                <a class="nav-link">
             <span class="d-inline-block mr-3">
                 <fa-icon [icon]="faAddressBook"></fa-icon>
             </span>
-            <span>Contacts</span>
-        </a>
-    </div>
+                    <span class="nav-link-label">Contacts</span>
+                </a>
+            </div>
 
+            <hr class="sidebar-divider">
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center">
-        <button class="toggle-button d-inline-flex justify-content-center align-items-center btn btn-outline-light">
-            <fa-icon [icon]="toggleSidebar"></fa-icon>
-        </button>
+            <div class="d-flex justify-content-center">
+                <button (click)="toggleSidebar()"
+                        class="toggle-button d-inline-flex justify-content-center align-items-center btn btn-outline-light">
+                    <fa-icon [icon]="toggleSidebarIcon"></fa-icon>
+                </button>
+            </div>
+        </div>
     </div>
 </div>

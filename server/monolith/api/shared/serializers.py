@@ -14,7 +14,7 @@ class EntityMetaSerializer(ModelSerializer):
 
 
 class TagsSerializer(ModelSerializer):
-    meta = EntityMetaSerializer()
+    meta = EntityMetaSerializer(required=False)
 
     class Meta:
         model = Tags
@@ -26,7 +26,7 @@ class TagsSerializer(ModelSerializer):
 
 
 class CategoriesSerializer(ModelSerializer):
-    meta = EntityMetaSerializer()
+    meta = EntityMetaSerializer(required=False)
 
     class Meta:
         model = Categories

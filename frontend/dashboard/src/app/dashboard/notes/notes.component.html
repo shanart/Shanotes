@@ -23,8 +23,9 @@
         <div class="list-group notes-list rounded-0">
             <a *ngFor="let note of notes"
                routerLink="{{note.id}}"
+               routerLinkActive="active"
                 href="#"
-               class="d-flex justify-content-between list-group-item list-group-item-action border-right-0 border-left-0 p-2">  <!--  active class -->
+               class="d-flex justify-content-between list-group-item list-group-item-action border-right-0 border-left-0 p-2">
                 <small>{{note.title}}</small>
                 <small style="opacity: 0.5; float: right">{{note.created_at}}</small>
             </a>

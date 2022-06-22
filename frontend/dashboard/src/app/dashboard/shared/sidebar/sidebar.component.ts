@@ -3,6 +3,7 @@ import {
     faCalendarCheck,
     faList,
     faAngleLeft,
+    faAngleRight,
     faLink,
     faFile,
     faBell,
@@ -19,16 +20,22 @@ import {
 export class SidebarComponent implements OnInit {
     faCalendar = faCalendarCheck;
     notes = faList;
-    toggleSidebar = faAngleLeft;
+    toggleSidebarIcon = faAngleLeft;
     faLink = faLink;
     faFile = faFile;
     faBell = faBell;
     faAddressBook = faAddressBook;
+    sidebar_active = true;
 
     constructor() {
     }
 
     ngOnInit(): void {
+    }
+
+    toggleSidebar(): void {
+        this.sidebar_active = !this.sidebar_active;
+        this.toggleSidebarIcon = this.sidebar_active? faAngleLeft: faAngleRight
     }
 
 }
