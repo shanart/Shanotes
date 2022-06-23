@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {DashboardRoutingModule} from './dashboard-routing.module';
-import {NotesService} from "./notes.service";
+import {NotesService} from "../common/services/notes.service";
 import {DashboardComponent} from "./dashboard.component";
 import {SidebarComponent} from './shared/sidebar/sidebar.component';
 import {TopbarComponent} from './shared/topbar/topbar.component';

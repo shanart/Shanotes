@@ -33,5 +33,6 @@ class CategoriesSerializer(ModelSerializer):
         fields = (
             "id",
             "title",
+            "parent",
             "meta",
         )
