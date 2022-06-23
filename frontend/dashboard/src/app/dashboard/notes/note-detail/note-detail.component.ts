@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {NotesService} from "../../notes.service";
+import {NotesService} from "../../../common/services/notes.service";
 import {ActivatedRoute} from "@angular/router";
 import {switchMap} from "rxjs/operators";
-import {Note} from "../../../common/models/common";
+import {Login, Note} from "../../../common/models/common";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 
@@ -12,6 +12,7 @@ import {faCalendar} from "@fortawesome/free-solid-svg-icons";
     encapsulation: ViewEncapsulation.None
 })
 export class NoteDetailComponent implements OnInit, OnDestroy {
+    note_id: number;
     faCalendar = faCalendar;
     note: Note;
     loading: boolean = true;
@@ -27,7 +28,10 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.route.params.pipe(
-            switchMap((params) => this.notesService.getNoteDetail(params["id"]))
+            switchMap((params) => {
+                this.note_id = params["id"];
+                return this.notesService.getNoteDetail(params["id"])
+            })
         ).subscribe((result: Note) => {
             this.note = result;
             this.loading = false;
@@ -40,6 +44,12 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
     }
 
     onSubmit(): void {
-
+        if (this.noteForm.valid) {
+            this.notesService.updateNote(this.note_id, this.noteForm.value as Login).pipe().subscribe(
+                (result: Note) => {
+                    console.log(result);
+                }
+            )
+        }
     }
 }

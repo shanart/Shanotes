@@ -11,7 +11,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 const routes: Routes = [
     {
         path: "",
-        component: NotesComponent
+        component: NotesComponent,
+        children: [
+            {
+                path: ":id",
+                component: NoteDetailComponent
+            }
+        ]
     }
 ];
 

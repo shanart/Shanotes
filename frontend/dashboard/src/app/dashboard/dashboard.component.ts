@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TokenService} from "../common/services/token.service";
-import {NotesService} from "./notes.service";
+import {NotesService} from "../common/services/notes.service";
 
 @Component({
     selector: '#dashboard',

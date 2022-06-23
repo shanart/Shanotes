@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Note} from "../common/models/common";
+import {Note} from "../models/common";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -26,15 +26,22 @@ export class NotesService {
     }
 
     getShortNotesList(): Observable<NotesResponse> {
-        const url = `/api/v1/notes/list/?list=short`;
+        const url = `/api/v1/notes/?list=short`;
         return this.http.get<NotesResponse>(url, this.httpOptions).pipe(
             catchError(this.handleError)
         );
     }
 
     getNoteDetail(id: number): Observable<Note> {
-        const url = `/api/v1/notes/${id}`;
+        const url = `/api/v1/notes/${id}/`;
         return this.http.get<Note>(url, this.httpOptions).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    updateNote(id: number, payload: any): Observable<Note> {
+        const url = `/api/v1/notes/${id}/`;
+        return this.http.patch<Note>(url, payload, this.httpOptions).pipe(
             catchError(this.handleError)
         );
     }

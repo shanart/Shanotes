@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {NotesService} from "../notes.service";
+import {NotesService} from "../../common/services/notes.service";
 import {Note} from "../../common/models/common";
 import {faSlidersH} from "@fortawesome/free-solid-svg-icons";
 

@@ -4,18 +4,17 @@ services:
 
   # =======================================
   # Services
-  #   monolith:
-  #     build: ./server/monolith
-  #     image: &dashboard dashboard
-  #     command: python manage.py runserver 0.0.0.0:8000
-  # #    volumes:
-  # #      - ./dashboard/backend/:/usr/src/app/
-  #     ports:
-  #       - 8000:8000
-  #     env_file:
-  #       - ./server/monolith/.env
-  #     depends_on:
-  #       - db
+  monolith:
+    build: ./server/monolith
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./server/monolith/:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./server/monolith/.env
+    depends_on:
+      - db
 
   # =======================================
   # Infrastructure

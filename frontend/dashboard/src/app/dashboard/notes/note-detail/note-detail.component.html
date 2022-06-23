@@ -9,7 +9,9 @@
                     <fa-icon [icon]="faCalendar"></fa-icon>
                     {{ note.created_at }}
                 </small>
-                <button class="btn btn-sm btn-success" [disabled]="true">Save</button>
+                <button [disabled]="!noteForm.valid"
+                        (click)="onSubmit()"
+                        class="btn btn-sm btn-success">Save</button>
             </div>
 
             <div class="form-group w-100">
