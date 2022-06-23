@@ -11,4 +11,7 @@ scrape_configs:
     static_configs:
       - targets:
         - 'prometheus:9090'
-        - 'idonotexists:564'
+        - 'monolith:8000'
+        - 'db:5432'
+        - 'rabbitmq:5672'
+        - 'rabbitmq:15672'

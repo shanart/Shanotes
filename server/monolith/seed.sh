@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 echo "initial clear database from old data"
 python manage.py flush --no-input
 
