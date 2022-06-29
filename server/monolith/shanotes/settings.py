@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_filters',
 
     'apps.shared',
     'apps.users',
@@ -149,7 +150,8 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%d %b %Y %H:%M:%S",
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 
