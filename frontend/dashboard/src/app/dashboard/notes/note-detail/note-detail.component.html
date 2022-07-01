@@ -1,6 +1,4 @@
 <div class="p-3">
-
-
     <form [formGroup]="noteForm" (onSubmit)="onSubmit()" enctype="multipart/form-data">
         <div *ngIf="note">
 
@@ -25,23 +23,16 @@
                           name="content" class="form-control"></textarea>
             </div>
 
-            <!-- TODO: tags input select/creator -->
-            <ul *ngIf="note.tags" class="m-0 p-0">
-                <li *ngFor="let tag of note.tags" class="d-inline-block pr-1">
-                    <a *ngIf="!tag.meta" routerLink="/notes/search?tag={{ tag.id }}"
-                       class="badge badge-primary">
-                        {{ tag.title }}
-                    </a>
-                    <a *ngIf="tag.meta" routerLink="/notes/search?tag={{ tag.id }}"
-                       class="badge text-white" style="background-color: {{ tag.meta.color | hex_color }}">
-                        {{ tag.title }}
-                    </a>
-                </li>
-
-            </ul>
-
+            <ng-select
+                class="text-dark"
+                [items]="allTags$ | async"
+                [multiple]="true"
+                [closeOnSelect]="true"
+                [hideSelected]="true"
+                bindLabel="title"
+                formControlName="tags">
+            </ng-select>
 
         </div>
     </form>
-
 </div>

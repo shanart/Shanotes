@@ -10,6 +10,7 @@ class TagsViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated, IsOwner,)
     filter_backends = (DjangoFilterBackend, )
     filterset_fields = ('title', )
+    pagination_class = None
 
     def get_queryset(self):
         return Tags.objects.filter(owner=self.request.user)
@@ -20,6 +21,7 @@ class CategoriesViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated, IsOwner,)
     filter_backends = (DjangoFilterBackend, )
     filterset_fields = ('title', )
+    pagination_class = None
 
     def get_queryset(self):
         return Categories.objects.filter(owner=self.request.user)
