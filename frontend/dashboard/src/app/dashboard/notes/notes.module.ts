@@ -7,6 +7,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HexColorPipe} from "../../common/pipes/hexColor.pipe";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 const routes: Routes = [
     {
@@ -35,7 +37,8 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
-        FontAwesomeModule
+        FontAwesomeModule,
+        NgSelectModule
     ]
 })
 export class NotesModule {

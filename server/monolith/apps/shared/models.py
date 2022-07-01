@@ -17,7 +17,7 @@ class EntityMeta(models.Model):
 
 
 class Tags(models.Model):
-    title = models.CharField(max_length=64)
+    title = models.CharField(max_length=64, unique=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     meta = models.ForeignKey(EntityMeta, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -31,7 +31,7 @@ class Tags(models.Model):
 
 
 class Categories(models.Model):
-    title = models.CharField(max_length=64)
+    title = models.CharField(max_length=64, unique=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     meta = models.ForeignKey(EntityMeta, on_delete=models.SET_NULL, null=True, blank=True)
     parent = models.ForeignKey("self", on_delete=models.SET_NULL, null=True, blank=True)
